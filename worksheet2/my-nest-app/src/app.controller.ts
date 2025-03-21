@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
@@ -20,6 +19,7 @@ export class AppController {
 
   @Get('api/articles/:id')
   getArticleById(@Param('id') id: string): any {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     return ARTICLES.find((article) => article._id === id);
   }
 }
