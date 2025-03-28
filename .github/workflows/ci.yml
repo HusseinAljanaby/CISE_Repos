@@ -17,9 +17,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          path: .
-          fetch-depth: 0
 
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -29,8 +26,33 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run the tests
+      - name: Run the tests for worksheet 1
+        working-directory: ./worksheet1
         run: npm test
 
-      - name: Build
+      - name: Run the tests for worksheet 2
+        working-directory: ./worksheet2
+        run: npm test
+
+      - name: Run the tests for worksheet 3 backend
+        working-directory: ./worksheet3/worksheet3_backend
+        run: npm test
+
+      - name: Run the tests for worksheet 3 frontend
+        working-directory: ./worksheet3/worksheet3_frontend
+        run: npm test
+
+      - name: Build worksheet 1
+        working-directory: ./worksheet1
+        run: npm run build
+
+      - name: Build worksheet 2
+        working-directory: ./worksheet2
+        run: npm run build
+
+      - name: Build worksheet 3 backend
+        working-directory: ./worksheet3/worksheet3_backend
+        run: npm run build
+      - name: Build worksheet 3 frontend
+        working-directory: ./worksheet3/worksheet3_frontend
         run: npm run build
